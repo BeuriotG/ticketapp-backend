@@ -1,15 +1,21 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-require("../Models/connection")
-const Trip = require ("../Models/trips")
+const Trip = require("../Models/trips");
 
+// route get : donne les trains disponibles en fonction des paramètres
+router.post("/", (req, res) => {
+  const { departure, arrival, date } = req.body;
+  console.log(departure);
+  if (!departure || !arrival || !date) {
+    res.json({ result: false, error: "le trajet n'existe pas" });
+    return;
+  }
 
 
 
 // route get : donne les trains disponibles en fonction des paramètres 
 router.post("/", (req, res) => {
     const {departure, arrival, date} = req.body; 
-    console.log(departure)
     if (!departure || !arrival || !date) { 
         res.json ({result: false, error :"le trajet n'existe pas"})
         return 
