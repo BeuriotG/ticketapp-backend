@@ -21,13 +21,15 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  Cart.find().then((cartData) => {
-    if (cartData) {
-      res.json({ result: true, cartData });
-    } else {
-      res.json({ result: false });
-    }
-  });
+  Cart.find()
+    .sort({ date: 1 })
+    .then((cartData) => {
+      if (cartData) {
+        res.json({ result: true, cartData });
+      } else {
+        res.json({ result: false });
+      }
+    });
 });
 
 router.delete("/", (req, res) => {
