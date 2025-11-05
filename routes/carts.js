@@ -10,6 +10,7 @@ router.post("/", (req, res) => {
       arrival: data.arrival,
       date: data.date,
       price: data.price,
+      booked: false,
     });
     newCart.save().then((data) => {
       if (data) {
