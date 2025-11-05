@@ -14,16 +14,17 @@ router.post("/", (req, res) => {
   Trip.find({
     departure: { $regex: new RegExp(departure, "i") },
     arrival: { $regex: new RegExp(arrival, "i") },
-    date: { $gte: formatDate },
-  })
-    .sort({ date: 1 })
-    .then((tripData) => {
-      res.json({
-        result: true,
-        message: "le trajet a été trouvé",
-        trip: tripData,
-      });
-    });
+    date: {
+      $gte: new Date(formatDate.setHours(0, 0, 0, 0)),
+      $lt: new Date(formatDate.setHours(23, 59, 59, 999)),
+    },
+  }).then((tripData) =>
+    res.json({
+      result: true,
+      message: "le trajet a été trouvé",
+      trip: tripData,
+    })
+  );
 });
 
 module.exports = router;
