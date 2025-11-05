@@ -40,4 +40,18 @@ router.delete("/", (req, res) => {
   });
 });
 
+// je cherche a faire une route put qui apres avoir reçu un tableau d'id, doit modifier 
+// le statut de la réservation en réservé. Et la condition est que peut importe le nombre de 
+// réservation, ca doit fonctionner.
+
+
+router.put("/", (req, res) => {
+  Cart.updateMany({}, {booked: true})
+  .then((idData) => {
+  res.json({idData})
+})
+})
+
 module.exports = router;
+
+
