@@ -5,6 +5,7 @@ const cartSchema = mongoose.Schema({
   arrival: String,
   date: Date,
   price: Number,
+  booked: Boolean,
 });
 
 const Cart = mongoose.model("carts", cartSchema);
