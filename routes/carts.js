@@ -29,4 +29,14 @@ router.get("/", (req, res) => {
   });
 });
 
+router.delete("/", (req, res) => {
+  Cart.deleteOne({ _id: req.body.id }).then((idData) => {
+    if (idData) {
+      res.json({ result: true, idData });
+    } else {
+      res.json({ result: false });
+    }
+  });
+});
+
 module.exports = router;
